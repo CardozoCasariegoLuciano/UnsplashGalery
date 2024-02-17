@@ -1,0 +1,40 @@
+<form class="filter" [formGroup]="filterForm">
+  <app-custom-select
+    label="Order by"
+    [options]="orderByOptions"
+    [control]="filterForm.get('order_by')!"
+  />
+
+  <app-custom-select
+    label="Orientation"
+    [options]="orientationOptions"
+    [control]="filterForm.get('orientation')!"
+  />
+
+  <app-custom-select
+    label="Color"
+    [options]="colorOptions"
+    [control]="filterForm.get('color')!"
+  />
+
+  <label
+    >images per page
+    <input
+      type="range"
+      value="15"
+      max="30"
+      min="10"
+      formControlName="per_page"
+    />
+    {{ filterForm.get("per_page")?.value }}</label
+  >
+
+  <label
+    >Content safety <input type="checkbox" formControlName="content_safety"
+  /></label>
+
+  <div class="buttons">
+    <button class="clear" (click)="onClearFilter()">borrar filtros</button>
+    <button class="apply" (click)="apply()">{{ btnText }}</button>
+  </div>
+</form>

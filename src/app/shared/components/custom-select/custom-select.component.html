@@ -1,0 +1,25 @@
+<label class="custom-select"
+  >{{ label }}
+  <div #selector class="selector" (click)="showOptions()">
+    <p>{{ selectedOption.text }}</p>
+    <div
+      *ngIf="isOptionVisible"
+      appSvg
+      svgName="chevron-up"
+      svgHeight="20px"
+      svgWidth="20px"
+    ></div>
+    <div
+      *ngIf="!isOptionVisible"
+      appSvg
+      svgName="chevron-down"
+      svgHeight="20px"
+      svgWidth="20px"
+    ></div>
+    <ul *ngIf="isOptionVisible">
+      @for (opt of options; track $index) {
+      <li (click)="selectOption(opt)">{{ opt.text }}</li>
+      }
+    </ul>
+  </div>
+</label>

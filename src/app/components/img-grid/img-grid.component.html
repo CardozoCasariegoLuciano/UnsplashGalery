@@ -1,0 +1,13 @@
+@if (isLoading) {
+<div class="spiner">
+  <app-spiner />
+</div>
+} @else {
+<div class="imgGrid">
+  @for (item of imgList(); track $index) {
+  <app-img-card [img]="item"></app-img-card>
+  }@empty {
+  <p class="noContent">No hay resultados para esa busqueda</p>
+  }
+</div>
+}

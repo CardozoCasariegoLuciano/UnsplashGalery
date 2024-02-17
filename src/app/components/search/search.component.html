@@ -1,0 +1,28 @@
+<main>
+  <div class="search">
+    <div class="input_container">
+      <div appSvg svgName="search" (click)="search()" svgPointer></div>
+      <input
+        type="text"
+        placeholder="cats, cars, food"
+        [formControl]="searchControl"
+        (keyup.enter)="search()"
+      />
+    </div>
+    @if (hasFilters) {
+    <div
+      appSvg
+      svgName="filter"
+      svgColor="tomato"
+      (click)="openFilters()"
+      svgPointer
+    ></div>
+    }@else {
+    <div appSvg svgName="filter" (click)="openFilters()" svgPointer></div>
+    }
+  </div>
+
+  @if (showFilters) {
+  <app-filter (sendFilter)="closeFilter()" [query]="searchControl.value" />
+  }
+</main>

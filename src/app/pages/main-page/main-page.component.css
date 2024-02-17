@@ -1,0 +1,13 @@
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 40px;
+  margin-top: 40px;
+  width: 100%;
+
+  app-search, app-img-grid{
+    width: 100%;
+  }
+}

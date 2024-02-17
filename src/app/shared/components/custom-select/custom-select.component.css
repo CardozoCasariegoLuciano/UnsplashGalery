@@ -1,0 +1,59 @@
+.custom-select {
+  position: relative;
+  display: inline-block;
+  font-size: 14px;
+}
+
+.custom-select .selector {
+  position: relative;
+  display: block;
+  color: black;
+  width: 250px;
+  min-height: 35px;
+  background: white;
+  border-radius: 3px;
+  border: 1px solid #888;
+  outline: none;
+  padding: 0 5px 0 10px;
+  margin-top: 5px;
+  cursor: pointer;
+  appearance: none;
+  user-select: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  p {
+    padding: 0px;
+    margin: 0px;
+  }
+}
+
+.onFocus {
+  border: 1px solid #1fade0 !important;
+}
+
+ul {
+  list-style: none;
+  position: absolute;
+  z-index: 9;
+  top: 36px;
+  right: 0;
+
+  background-color: lightgray;
+  border-radius: 0px 0px 6px 6px;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+
+  li {
+    padding: 5px 10px;
+    border-radius: 0px 0px 6px 6px;
+
+    &:hover {
+      background-color: darkgray;
+      cursor: pointer;
+    }
+  }
+}

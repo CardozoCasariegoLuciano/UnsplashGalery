@@ -1,0 +1,50 @@
+.skeleton {
+  background-color: darkgray;
+  position: relative;
+  overflow: hidden;
+}
+
+.brillo {
+  position: absolute;
+  width: 5px;
+  height: 500px;
+  background-color: #eeeeee;
+
+  box-shadow: 15px 0 10px #eeeeee, -15px 0 10px #eeeeee;
+}
+
+.circle {
+  border-radius: 100%;
+}
+
+.vertical {
+  transform: rotate(15deg);
+  top: -50px;
+  left: -50px;
+  animation: ani-vertical 4s infinite alternate linear;
+}
+
+.horizontal {
+  transform: rotate(85deg);
+  top: -255px;
+  left: 50%;
+  animation: ani-horizontal 4.5s infinite alternate linear;
+}
+
+@keyframes ani-vertical {
+  0% {
+    left: -50px;
+  }
+  100% {
+    left: 110%;
+  }
+}
+
+@keyframes ani-horizontal {
+  0% {
+    top: -255px;
+  }
+  100% {
+    top: 220px;
+  }
+}
