@@ -1,1 +1,28 @@
-<p>img-details works!</p>
+<main>
+  @if (img) {
+
+  <div class="img-section">
+    <img [src]="img.urls.small" alt="" />
+    @if (img.description) {
+    <p>{{ img.description }}</p>
+    }@else{
+    <p>{{ img.alt_description }}</p>
+    }
+  </div>
+  <p class="createdDate">
+    creado el {{ img.created_at | date : "dd/MM/yyyy" }}
+  </p>
+
+  <!--<h2>manejar spiners & skeletons</h2>-->
+  <div class="navigator">
+    <nav>
+      <ul>
+        <li routerLinkActive="isSelected" routerLink="author">Author</li>
+        <li routerLinkActive="isSelected" routerLink="statics">Stadistics</li>
+      </ul>
+    </nav>
+  </div>
+
+  <router-outlet />
+  }
+</main>

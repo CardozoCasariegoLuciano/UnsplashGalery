@@ -1,0 +1,49 @@
+<main>
+  @if (img) {
+
+  <div class="user-section">
+    <div class="user-data">
+      <div class="username">
+        <img [src]="img!.user.profile_image.medium" alt="" />
+        <p>{{ img!.user.username | titlecase }}</p>
+      </div>
+    </div>
+
+    <div class="links-section">
+      <a
+        target="_blank"
+        *ngIf="img.user.portfolio_url"
+        [href]="img.user.portfolio_url"
+        >Personal portfolio</a
+      >
+      <a target="_blank" [href]="img.user.links.html">Unsplash profile</a>
+      <a
+        target="_blank"
+        *ngIf="img.user.social.twitter_username"
+        [href]="'https://twitter.com/' + img.user.social.twitter_username"
+        >Tweeter</a
+      >
+      <a
+        target="_blank"
+        *ngIf="img.user.social.instagram_username"
+        [href]="
+          'https://www.instagram.com/' + img.user.social.instagram_username
+        "
+        >Instagram</a
+      >
+      <p *ngIf="img.user.location">Location: {{ img.user.location }}</p>
+    </div>
+  </div>
+
+  <div class="bio-section">
+    <h2>Bio</h2>
+    @if (img.user.bio) {
+    <p>{{ img.user.bio }}</p>
+    }@else {
+    <p>The user has no load any bio information</p>
+    }
+  </div>
+
+  }
+  <!--TODO navegar a las imagenes de este usuario-->
+</main>

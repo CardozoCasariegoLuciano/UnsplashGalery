@@ -5,10 +5,11 @@ import { AppStore } from '../../store/app.reducer';
 import { loadImg, loadSearchImg } from '../../store/actions/img.actions';
 import { ImgGridComponent } from '../../components/img-grid/img-grid.component';
 import { PaginationComponent } from '../../components/pagination/pagination.component';
-import { Subscription } from 'rxjs';
+import { Subscription, take } from 'rxjs';
 import { FilterState } from '../../store/reducers/filters.redicer';
 import { SearchComponent } from '../../components/search/search.component';
 import { selectFilter } from '../../store/selectors/filter.selectors';
+import { selectImgList } from '../../store/selectors/img.selectors';
 
 @Component({
   selector: 'app-main-page',
@@ -21,6 +22,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
   imgList: UnsplashImages[] = [];
   page!: number;
   subs = new Subscription();
+  firstTime = true;
 
   constructor(private store: Store<AppStore>) {}
 
@@ -29,13 +31,28 @@ export class MainPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.listenFilters();
+    this.subs.add(
+      this.store
+        .select(selectImgList)
+        .pipe(take(1))
+        .subscribe({
+          next: (img) => {
+            const hasNoContent = img.list.length <= 0;
+            this.listenFilters(hasNoContent);
+          },
+        })
+    );
   }
 
-  private listenFilters() {
+  private listenFilters(hasNoContent: boolean) {
     this.subs.add(
       this.store.select(selectFilter).subscribe({
         next: (filters) => {
+          if (!hasNoContent && this.firstTime) {
+            this.firstTime = false;
+            return;
+          }
+
           const data = this.prepareFilterData(filters);
           this.page = filters.page || 1;
           this.dispatchData(data);
@@ -72,8 +89,8 @@ export class MainPageComponent implements OnInit, OnDestroy {
   }
 }
 
-//Usar la data del store al cargar tanto la data de una imagen, como de la lista completa
 //TODO: maquetar pagina de imagen seleccionada + sus estadisticas ( y cumplir las reglas de unSplash)
+//TODO que "estado" de la app se guarde en las queryParams
 //TODO: maquetar seccion de imagen random (sin parametros)
 //TODO: Skipe Coleccions and topics
 //TODO: maquetar pantalla de estadisticas de unsplash junto sus links

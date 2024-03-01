@@ -4,6 +4,8 @@ import { Observable, map } from 'rxjs';
 import { UnsplashImages } from '../interfaces/img.interfaces';
 import { SearchResult } from '../interfaces/search-result.interface';
 import { FilterState } from '../store/reducers/filters.redicer';
+import { ImageStatcis } from '../interfaces/img-statics.interface';
+import { ImageByID } from '../interfaces/imgByID.interface';
 
 //export type LastTypeLoaded = 'Default' | 'Search';
 
@@ -35,5 +37,15 @@ export class ImgService {
         },
       })
       .pipe(map((resp) => resp.results));
+  }
+
+  seachImgByID(id: string): Observable<ImageByID> {
+    return this.http.get<ImageByID>(`${this.defaultPhotoURL}${id}`);
+  }
+
+  seachImgStaticsByID(id: string): Observable<ImageStatcis> {
+    return this.http.get<ImageStatcis>(
+      `${this.defaultPhotoURL}${id}/statistics`
+    );
   }
 }

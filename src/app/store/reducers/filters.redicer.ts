@@ -51,7 +51,6 @@ const _FilterReducer = createReducer(
   })),
 
   on(nextPage, (state) => {
-    console.log(state.page);
     if (state.page && state.page >= 2) {
       return { ...state, page: Number(state.page) + 1 };
     } else {

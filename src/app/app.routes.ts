@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 import { MainPageComponent } from './pages/main-page/main-page.component';
-import { RandomImageComponent } from './pages/random-image/random-image.component';
-import { AboutComponent } from './pages/about/about.component';
 import { ImgDetailsComponent } from './pages/img-details/img-details.component';
+import { AuthorPageComponent } from './pages/img-details/sub-pages/author-page/author-page.component';
+import { StadisticsPageComponent } from './pages/img-details/sub-pages/stadistics-page/stadistics-page.component';
 
 export const routes: Routes = [
   {
@@ -10,19 +10,27 @@ export const routes: Routes = [
     component: MainPageComponent,
   },
   {
-    path: 'random',
-    component: RandomImageComponent,
-  },
-  {
-    path: 'about',
-    component: AboutComponent,
-  },
-  {
     path: 'image/:id',
     component: ImgDetailsComponent,
+    children: [
+      {
+        path: 'author',
+        component: AuthorPageComponent,
+      },
+      {
+        path: 'statics',
+        component: StadisticsPageComponent,
+      },
+      {
+        path: '**',
+        redirectTo: 'author',
+      },
+    ],
   },
   {
     path: '**',
     redirectTo: 'search',
   },
+
+  //TODO no ser qlia y meter lazyLoad aca
 ];

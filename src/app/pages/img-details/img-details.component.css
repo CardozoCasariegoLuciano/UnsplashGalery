@@ -1,0 +1,51 @@
+main {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.img-section {
+  width: 500px;
+  margin: auto;
+  text-align: center;
+}
+
+.createdDate {
+  margin: 0px 0px 10px 0px;
+  font-size: 0.9rem;
+  color: #969090;
+}
+
+.navigator {
+  width: 80%;
+  margin: auto;
+  margin-top: 10px;
+
+  border-top: 1px solid #b0abab;
+  border-bottom: 1px solid #b0abab;
+
+  nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    ul {
+      margin: 5px 0px;
+      display: flex;
+      list-style: none;
+      gap: 15px;
+
+      li {
+        cursor: pointer;
+        padding: 5px 10px;
+        position: relative;
+      }
+    }
+  }
+}
+
+.isSelected {
+  color: tomato;
+}
